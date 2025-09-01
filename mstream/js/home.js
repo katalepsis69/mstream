@@ -144,6 +144,88 @@ function slide(listId, direction) {
 }
 
 // ===================================
+// BANNER SLIDER FUNCTIONS
+// ===================================
+
+function setupBannerSlider(movies) {
+  bannerSlidesData = movies.slice(0, 5); // Use the first 5 movies for the banner
+  const slidesContainer = document.getElementById('banner-slides');
+  const dotsContainer = document.getElementById('banner-dots');
+
+  // Clear existing content
+  slidesContainer.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  bannerSlidesData.forEach((movie, index) => {
+    // Create Slide
+    const slide = document.createElement('div');
+    slide.className = 'banner-slide';
+    slide.style.backgroundImage = `url(${IMG_URL}${movie.backdrop_path})`;
+    
+    const title = document.createElement('h1');
+    title.textContent = movie.title || movie.name;
+    slide.appendChild(title);
+    
+    slidesContainer.appendChild(slide);
+
+    // Create Dot
+    const dot = document.createElement('div');
+    dot.className = 'banner-dot';
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  // Setup Arrows
+  document.querySelector('.banner-arrow.left').addEventListener('click', prevSlide);
+  document.querySelector('.banner-arrow.right').addEventListener('click', nextSlide);
+
+  showSlide(0);
+  startBannerAutoplay();
+}
+
+function showSlide(index) {
+  const slidesContainer = document.getElementById('banner-slides');
+  const dots = document.querySelectorAll('.banner-dot');
+  
+  // Update index
+  currentBannerIndex = index;
+  
+  // Move the slides container
+  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+
+  // Update active dot
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function nextSlide() {
+  const nextIndex = (currentBannerIndex + 1) % bannerSlidesData.length;
+  showSlide(nextIndex);
+  resetBannerAutoplay();
+}
+
+function prevSlide() {
+  const prevIndex = (currentBannerIndex - 1 + bannerSlidesData.length) % bannerSlidesData.length;
+  showSlide(prevIndex);
+  resetBannerAutoplay();
+}
+
+function goToSlide(index) {
+  showSlide(index);
+  resetBannerAutoplay();
+}
+
+function startBannerAutoplay() {
+  bannerInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+}
+
+function resetBannerAutoplay() {
+  clearInterval(bannerInterval);
+  startBannerAutoplay();
+}
+
+// ===================================
 // INITIALIZATION
 // ===================================
 
