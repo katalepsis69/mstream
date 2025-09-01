@@ -6,7 +6,6 @@ const BASE_URL = '/api'; // This now routes to your Cloudflare Function
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
-let currentItem;
 let bannerSlidesData = [];
 let currentBannerIndex = 0;
 let bannerInterval;
@@ -148,11 +147,18 @@ function slide(listId, direction) {
 // ===================================
 
 function setupBannerSlider(movies) {
-  bannerSlidesData = movies.slice(0, 5); // Use the first 5 movies for the banner
+  bannerSlidesData = movies.slice(0, 5); // Use the first 5 movies
   const slidesContainer = document.getElementById('banner-slides');
   const dotsContainer = document.getElementById('banner-dots');
+  const leftArrow = document.querySelector('.banner-arrow.left');
+  const rightArrow = document.querySelector('.banner-arrow.right');
 
-  // Clear existing content
+  // **Error prevention**: Check if all required elements exist
+  if (!slidesContainer || !dotsContainer || !leftArrow || !rightArrow) {
+    console.error("Banner slider HTML elements not found! The slider can't be initialized.");
+    return; // Stop the function to prevent a crash
+  }
+
   slidesContainer.innerHTML = '';
   dotsContainer.innerHTML = '';
 
@@ -161,11 +167,9 @@ function setupBannerSlider(movies) {
     const slide = document.createElement('div');
     slide.className = 'banner-slide';
     slide.style.backgroundImage = `url(${IMG_URL}${movie.backdrop_path})`;
-    
     const title = document.createElement('h1');
     title.textContent = movie.title || movie.name;
     slide.appendChild(title);
-    
     slidesContainer.appendChild(slide);
 
     // Create Dot
@@ -176,8 +180,8 @@ function setupBannerSlider(movies) {
   });
 
   // Setup Arrows
-  document.querySelector('.banner-arrow.left').addEventListener('click', prevSlide);
-  document.querySelector('.banner-arrow.right').addEventListener('click', nextSlide);
+  leftArrow.addEventListener('click', prevSlide);
+  rightArrow.addEventListener('click', nextSlide);
 
   showSlide(0);
   startBannerAutoplay();
@@ -185,20 +189,24 @@ function setupBannerSlider(movies) {
 
 function showSlide(index) {
   const slidesContainer = document.getElementById('banner-slides');
+  if (!slidesContainer) return; // Add safety check
+  
   const dots = document.querySelectorAll('.banner-dot');
-  
-  // Update index
   currentBannerIndex = index;
-  
-  // Move the slides container
   slidesContainer.style.transform = `translateX(-${index * 100}%)`;
 
-  // Update active dot
   dots.forEach((dot, i) => {
     dot.classList.toggle('active', i === index);
   });
 }
 
+// This new function is for the automatic timer ONLY
+function autoAdvanceSlide() {
+    const nextIndex = (currentBannerIndex + 1) % bannerSlidesData.length;
+    showSlide(nextIndex);
+}
+
+// These functions are for manual user clicks
 function nextSlide() {
   const nextIndex = (currentBannerIndex + 1) % bannerSlidesData.length;
   showSlide(nextIndex);
@@ -217,7 +225,8 @@ function goToSlide(index) {
 }
 
 function startBannerAutoplay() {
-  bannerInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  // Use the new auto-advance function for the timer
+  bannerInterval = setInterval(autoAdvanceSlide, 5000);
 }
 
 function resetBannerAutoplay() {
