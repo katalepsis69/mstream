@@ -247,3 +247,56 @@ body {
   .modal-text h2 { font-size: 1.8rem; }
   #modal-video { height: 220px; }
 }
+
+/* =================================== */
+/* 8. SLIDER / CAROUSEL STYLES       */
+/* =================================== */
+
+.slider-container {
+  position: relative;
+}
+
+.list {
+  /* Change overflow to hidden and add smooth scrolling */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Add some extra padding to not cut off shadows */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(20, 20, 20, 0.7);
+  border: none;
+  color: var(--text-color);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, opacity 0.3s ease;
+  opacity: 0; /* Arrows are hidden by default */
+}
+
+.slider-container:hover .slider-arrow {
+  opacity: 1; /* Show arrows on container hover */
+}
+
+.slider-arrow:hover {
+  background-color: var(--primary-color);
+}
+
+.slider-arrow.left {
+  left: 10px;
+}
+
+.slider-arrow.right {
+  right: 10px;
+}

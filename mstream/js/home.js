@@ -118,6 +118,25 @@ function closeSearchModal() {
   document.getElementById('search-input').value = '';
 }
 
+function slide(listId, direction) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+
+  // Calculate the amount to scroll. We'll scroll by 80% of the visible width.
+  const scrollAmount = list.clientWidth * 0.8;
+
+  if (direction === 'left') {
+    list.scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  } else {
+    list.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+}
 
 // ===================================
 // INITIALIZATION

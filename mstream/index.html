@@ -34,17 +34,29 @@
 
   <div class="row">
     <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
+    <div class="slider-container">
+      <button class="slider-arrow left" onclick="slide('movies-list', 'left')" aria-label="Previous slide">&lt;</button>
+      <div class="list" id="movies-list"></div>
+      <button class="slider-arrow right" onclick="slide('movies-list', 'right')" aria-label="Next slide">&gt;</button>
+    </div>
   </div>
 
   <div class="row">
     <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
+    <div class="slider-container">
+      <button class="slider-arrow left" onclick="slide('tvshows-list', 'left')" aria-label="Previous slide">&lt;</button>
+      <div class="list" id="tvshows-list"></div>
+      <button class="slider-arrow right" onclick="slide('tvshows-list', 'right')" aria-label="Next slide">&gt;</button>
+    </div>
   </div>
 
   <div class="row">
     <h2>Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
+    <div class="slider-container">
+      <button class="slider-arrow left" onclick="slide('anime-list', 'left')" aria-label="Previous slide">&lt;</button>
+      <div class="list" id="anime-list"></div>
+      <button class="slider-arrow right" onclick="slide('anime-list', 'right')" aria-label="Next slide">&gt;</button>
+    </div>
   </div>
 
   <div class="modal" id="modal">
