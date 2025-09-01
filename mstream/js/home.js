@@ -84,31 +84,19 @@ function showDetails(item) {
   document.getElementById('modal-description').textContent = item.overview;
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2));
-  changeServer(); // Set the initial server URL
+
+  // Find the watch button and set its link
+  const watchButton = document.getElementById('watch-button');
+  const type = item.media_type === "movie" || item.release_date ? "movie" : "tv";
+  // We will use one provider for the watch link, for example vidsrc.cc
+  const watchURL = `https://vidsrc.cc/v2/embed/${type}/${item.id}`;
+  watchButton.href = watchURL;
+
   document.getElementById('modal').style.display = 'flex';
-}
-
-function changeServer() {
-  const server = document.getElementById('server').value;
-  // In search results, media_type is present. In trending, it is not.
-  // We need to determine if it's a movie or tv show. `release_date` exists on movies but not tv shows.
-  const type = currentItem.media_type === "movie" || currentItem.release_date ? "movie" : "tv";
-  let embedURL = "";
-
-  if (server === "vidsrc.cc") {
-    embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
-  } else if (server === "vidsrc.me") {
-    embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
-  } else if (server === "player.videasy.net") {
-    embedURL = `https://player.videasy.net/${type}/${currentItem.id}`;
-  }
-
-  document.getElementById('modal-video').src = embedURL;
 }
 
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-video').src = ''; // Stop video playback
 }
 
 function openSearchModal() {
