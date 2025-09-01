@@ -140,14 +140,6 @@ function setupBannerSlider(movies) {
   bannerSlidesData = movies.slice(0, 5); // Use the first 5 movies
   const slidesContainer = document.getElementById('banner-slides');
   const dotsContainer = document.getElementById('banner-dots');
-  const leftArrow = document.querySelector('.banner-arrow.left');
-  const rightArrow = document.querySelector('.banner-arrow.right');
-
-  // **Error prevention**: Check if all required elements exist
-  if (!slidesContainer || !dotsContainer || !leftArrow || !rightArrow) {
-    console.error("Banner slider HTML elements not found! The slider can't be initialized.");
-    return; // Stop the function to prevent a crash
-  }
 
   slidesContainer.innerHTML = '';
   dotsContainer.innerHTML = '';
@@ -168,10 +160,6 @@ function setupBannerSlider(movies) {
     dot.addEventListener('click', () => goToSlide(index));
     dotsContainer.appendChild(dot);
   });
-
-  // Setup Arrows
-  leftArrow.addEventListener('click', prevSlide);
-  rightArrow.addEventListener('click', nextSlide);
 
   showSlide(0);
   startBannerAutoplay();
@@ -194,19 +182,6 @@ function showSlide(index) {
 function autoAdvanceSlide() {
     const nextIndex = (currentBannerIndex + 1) % bannerSlidesData.length;
     showSlide(nextIndex);
-}
-
-// These functions are for manual user clicks
-function nextSlide() {
-  const nextIndex = (currentBannerIndex + 1) % bannerSlidesData.length;
-  showSlide(nextIndex);
-  resetBannerAutoplay();
-}
-
-function prevSlide() {
-  const prevIndex = (currentBannerIndex - 1 + bannerSlidesData.length) % bannerSlidesData.length;
-  showSlide(prevIndex);
-  resetBannerAutoplay();
 }
 
 function goToSlide(index) {
