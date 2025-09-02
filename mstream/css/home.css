@@ -53,7 +53,28 @@ body {
   gap: 15px;
 }
 .logo-container img { height: 40px; }
-.logo-container h1 { font-size: 1.8rem; font-weight: 600; }
+.logo-container h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  
+  /* --- New Gradient Animation Styles --- */
+  background: linear-gradient(90deg, #b0b0b0, #ffffff, #b0b0b0); /* Light grey, white, light grey gradient */
+  background-size: 200% auto; /* Make the background wider than the text */
+  -webkit-background-clip: text; /* Clip the background to the text shape */
+  -webkit-text-fill-color: transparent; /* Make the text itself transparent */
+  animation: gradient-flow 3s linear infinite; /* Apply the animation */
+  /* --- End New Gradient Animation Styles --- */
+}
+
+/* Define the animation */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% center; /* Start with gradient at the left */
+  }
+  100% {
+    background-position: 200% center; /* Move gradient to the right (200% because background-size is 200%) */
+  }
+}
 
 .nav-links { display: flex; align-items: center; gap: 20px; }
 .nav-links a { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
