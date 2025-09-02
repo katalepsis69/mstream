@@ -30,7 +30,6 @@
 
   <div class="banner-slider" id="banner-slider">
     <div class="banner-slides" id="banner-slides"></div>
-    
     <div class="banner-dots" id="banner-dots"></div>
   </div>
 
@@ -67,30 +66,31 @@
     <div class="list" id="anime-list"></div>
   </div>
 
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div class="modal-body">
-      <img id="modal-image" src="" alt="" />
-      <div class="modal-text">
-        <h2 id="modal-title"></h2>
-        <div class="stars" id="modal-rating"></div>
-        <p id="modal-description"></p>
-        
-        <div class="modal-extra-info">
-          <p><strong>Genres:</strong> <span id="modal-genres"></span></p>
-          <p><strong>Cast:</strong> <span id="modal-cast"></span></p>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+          
+          <div class="modal-extra-info">
+            <p><strong>Genres:</strong> <span id="modal-genres"></span></p>
+            <p><strong>Cast:</strong> <span id="modal-cast"></span></p>
+          </div>
+
+          <a href="#" id="watch-button" class="watch-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-play"></i> Watch Now
+          </a>
         </div>
-
-        <a href="#" id="watch-button" class="watch-btn" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-play"></i> Watch Now
-        </a>
-
       </div>
     </div>
   </div>
 
   <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <span class="close" onclick="closeSearchModal()">&times;</span>
     <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
@@ -106,5 +106,5 @@
   </div>
 </footer>
 
-  
 </body>
+</html>
