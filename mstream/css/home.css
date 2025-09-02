@@ -392,16 +392,20 @@ body {
 }
 
 .banner-content {
-  z-index: 2; /* Ensure content is above the gradient overlay */
-  max-width: 50%;
+  z-index: 2;
+  /* Give the content a bit more room */
+  max-width: 65%; 
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .banner-content h1 {
-  font-size: 4rem;
+  /* This makes the font size responsive to the screen width */
+  font-size: clamp(2.5rem, 5vw, 4rem); 
   font-weight: 700;
   margin-bottom: 0.5rem;
+  /* This forces the title onto a single line */
+  white-space: nowrap; 
 }
 
 .banner-meta {
