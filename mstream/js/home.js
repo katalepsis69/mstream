@@ -254,7 +254,6 @@ function setupBannerSlider(movies) {
     const playBtn = document.createElement('a');
     playBtn.className = 'btn btn-primary';
     playBtn.href = `watch.html?type=movie&id=${movie.id}`; // Assumes banner content is always 'movie'
-    playBtn.target = '_blank';
     playBtn.innerHTML = `<i class="fas fa-play"></i> Play Now`;
 
     const infoBtn = document.createElement('button');
