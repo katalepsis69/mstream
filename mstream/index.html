@@ -4,15 +4,70 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MStream - Your favorite destination for movies and TV shows" />
+    <meta name="description" content="MStream - Your favorite destination for movies and TV shows. Stream the latest blockbusters, popular TV series, and anime all in one place." />
     
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="movies, TV shows, streaming, anime, entertainment, watch online, MStream">
+    <meta name="author" content="MStream">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mstream.pages.dev/">
+    <meta property="og:title" content="MStream - Watch Movies & TV Shows Online">
+    <meta property="og:description" content="Your favorite destination for movies and TV shows. Stream the latest blockbusters, popular TV series, and anime all in one place.">
+    <meta property="og:image" content="https://mstream.pages.dev/mstream-landingpage.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MStream - Stream Movies & TV Shows">
+    <meta property="og:site_name" content="MStream">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mstream.pages.dev/">
+    <meta property="twitter:title" content="MStream - Watch Movies & TV Shows Online">
+    <meta property="twitter:description" content="Your favorite destination for movies and TV shows. Stream the latest blockbusters, popular TV series, and anime all in one place.">
+    <meta property="twitter:image" content="https://mstream.pages.dev/mstream-landingpage.webp">
+    <meta property="twitter:image:alt" content="MStream - Stream Movies & TV Shows">
+    <meta name="twitter:creator" content="@mstream">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#e50914">
+    <meta name="msapplication-TileColor" content="#e50914">
+    <link rel="canonical" href="https://mstream.pages.dev/">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MStream",
+      "url": "https://mstream.pages.dev/",
+      "description": "Your favorite destination for movies and TV shows",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MStream",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mstream.pages.dev/img/mstream.png"
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mstream.pages.dev/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <title>MStream - Watch Movies & TV Shows</title>
+    <title>MStream - Watch Movies & TV Shows Online | Free Streaming</title>
     
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
@@ -30,8 +85,9 @@
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#141414" />
+    
     <style>
-            * {
+      * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -47,6 +103,7 @@
       #root {
         min-height: 100vh;
       }
+      
       /* Loading screen */
       .loading-screen {
         position: fixed;
