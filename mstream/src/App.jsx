@@ -10,6 +10,7 @@ import About from './pages/About';
 import Disclaimer from './pages/Disclaimer';
 import SearchModal from './components/SearchModal';
 import { useTMDB } from './hooks/useTMDB';
+import Footer from './components/Footer';
 
 function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -81,6 +82,7 @@ function App() {
             <Route path="*" element={<Home />} />
           </Routes>
         </main>
+        <Footer />
       </div>
   );
 }
