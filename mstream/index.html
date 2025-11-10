@@ -1,115 +1,97 @@
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MStream</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="preload" href="css/home.css" as="style">
-  <link rel="preload" href="js/home.js" as="script">
-  <link rel="icon" href="img/mstream.ico" type="image/x-icon">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script defer src="js/home.js"></script>
-  <script type="text/javascript" data-cfasync="false">
-  /*<![CDATA[/* */
-    (function(){var m=window,v="d9dd21efc30c8427bb5d1c71908a8021",d=[["siteId",673+199-335-691-280+5234885],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],b=["d3d3LmludGVsbGlwb3B1cC5jb20veGNvdW50cnlTZWxlY3QubWluLmNzcw==","ZDNtcjd5MTU0ZDJxZzUuY2xvdWRmcm9udC5uZXQvai9jVVJJLm1pbi5qcw=="],r=-1,n,z,a=function(){clearTimeout(z);r++;if(b[r]&&!(1782797335000<(new Date).getTime()&&1<r)){n=m.document.createElement("script");n.type="text/javascript";n.async=!0;var y=m.document.getElementsByTagName("script")[0];n.src="https://"+atob(b[r]);n.crossOrigin="anonymous";n.onerror=a;n.onload=function(){clearTimeout(z);m[v.slice(0,16)+v.slice(0,16)]||a()};z=setTimeout(a,5E3);y.parentNode.insertBefore(n,y)}};if(!m[v]){try{Object.freeze(m[v]=d)}catch(e){}a()}})();
-  /*]]>/* */
-  </script>
-</head>
-
-<body>
-  <div class="navbar">
-    <a href="index.html" class="logo-container">
-      <img src="img/mstream.png" alt="MSTREAM" />
-      <h1 title="Movie Stream">MStream</h1>
-    </a>
-  
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MStream - Your favorite destination for movies and TV shows" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>MStream - Watch Movies & TV Shows</title>
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
+    <meta name="theme-color" content="#141414" />
+    <style>
+            * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      /* Loading screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .netflix-logo {
+        color: #E50914;
+        font-size: 2rem;
+        font-weight: 700;
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="loading-screen">
+      <div class="netflix-logo">MSTREAM</div>
     </div>
-  </div>
+    <script>
+      // Wait for 2.5 seconds, then hide the loading screen
+      setTimeout(() => {
+        const loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0'; // fade out smoothly
+          loadingScreen.style.transition = 'opacity 0.5s ease';
 
-  <div class="banner-slider" id="banner-slider">
-    <div class="banner-slides" id="banner-slides"></div>
-    <div class="banner-dots" id="banner-dots"></div>
-  </div>
-
-  <div class="row">
-    <div class="row-header">
-      <h2>Trending Movies</h2>
-      <div class="slider-nav">
-        <button class="slider-arrow left" onclick="slide('movies-list', 'left')" aria-label="Previous slide">&lt;</button>
-        <button class="slider-arrow right" onclick="slide('movies-list', 'right')" aria-label="Next slide">&gt;</button>
-      </div>
-    </div>
-    <div class="list" id="movies-list"></div>
-  </div>
-
-  <div class="row">
-    <div class="row-header">
-      <h2>Trending TV Shows</h2>
-      <div class="slider-nav">
-        <button class="slider-arrow left" onclick="slide('tvshows-list', 'left')" aria-label="Previous slide">&lt;</button>
-        <button class="slider-arrow right" onclick="slide('tvshows-list', 'right')" aria-label="Next slide">&gt;</button>
-      </div>
-    </div>
-    <div class="list" id="tvshows-list"></div>
-  </div>
-
-  <div class="row">
-    <div class="row-header">
-      <h2>Trending Anime</h2>
-      <div class="slider-nav">
-        <button class="slider-arrow left" onclick="slide('anime-list', 'left')" aria-label="Previous slide">&lt;</button>
-        <button class="slider-arrow right" onclick="slide('anime-list', 'right')" aria-label="Next slide">&gt;</button>
-      </div>
-    </div>
-    <div class="list" id="anime-list"></div>
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-          
-          <div class="modal-extra-info">
-            <p><strong>Genres:</strong> <span id="modal-genres"></span></p>
-            <p><strong>Cast:</strong> <span id="modal-cast"></span></p>
-          </div>
-
-          <a href="#" id="watch-button" class="watch-btn">
-            <i class="fas fa-play"></i> Watch Now
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
-    <div class="results" id="search-results"></div>
-  </div>
-
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 MStream. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="disclaimer.html">Disclaimer</a>
-      <a href="about.html">About Us</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-
+          // remove it from the DOM after fade-out
+          setTimeout(() => loadingScreen.remove(), 500);
+        }
+      }, 2500);
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
