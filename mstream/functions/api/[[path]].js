@@ -12,7 +12,7 @@ export async function onRequest(context) {
 
     // Get your secret API key from the Cloudflare environment variables.
     // Use VITE_TMDB_API_KEY for consistency with your frontend
-    const TMDB_API_KEY = context.env.VITE_TMDB_READ_ACCESS_TOKEN;
+    const TMDB_API_KEY = context.env.VITE_TMDB_API_KEY;
 
     if (!TMDB_API_KEY) {
       return new Response(

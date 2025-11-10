@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Use environment variables - these will be available in production via Cloudflare
 // and in development via Vite
-const TMDB_API_KEY = import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN;
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
 
