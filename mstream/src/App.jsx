@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
@@ -52,7 +52,6 @@ function App() {
   };
 
   return (
-    <Router>
       <div className="App">
         <Navbar
           onSearchClick={handleSearchClick}
@@ -83,7 +82,6 @@ function App() {
           </Routes>
         </main>
       </div>
-    </Router>
   );
 }
 

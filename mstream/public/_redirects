@@ -1,6 +1,0 @@
-# Serving as static files and exclude from React's routing
-/sitemap.xml /sitemap.xml 200
-/robots.txt /robots.txt 200
-/landingpage.webp /landingpage.webp 200
-/manifest.json /manifest.json 200
-/browserconfig.xml /browserconfig.xml 200
