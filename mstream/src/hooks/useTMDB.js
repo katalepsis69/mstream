@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// Use environment variables - these will be available in production via Cloudflare
-// and in development via Vite
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
@@ -13,7 +11,7 @@ const getApiBaseUrl = () => {
     return '/api';
   }
   // In production, use direct API with CORS handling
-  return '/api';
+  return 'https://api.themoviedb.org/3';
 };
 
 export const useTMDB = () => {
@@ -40,7 +38,7 @@ export const useTMDB = () => {
       return url.toString();
     } else {
       // In production, use direct API with API key
-      const url = new URL(`${baseUrl}${endpoint}`, 'https://api.themoviedb.org');
+      const url = new URL(`${baseUrl}${endpoint}`);
       url.searchParams.append('api_key', TMDB_API_KEY);
       Object.keys(params).forEach(key => {
         if (params[key] !== undefined && params[key] !== null) {
