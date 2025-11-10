@@ -10,16 +10,15 @@ export async function onRequest(context) {
     // The base URL for the real TMDB API.
     const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-    // Get your secret API key from the Cloudflare environment variables.
-    // Use VITE_TMDB_API_KEY for consistency with your frontend
-    const TMDB_API_KEY = context.env.VITE_TMDB_API_KEY;
+    // Get your secret Bearer Token from the Cloudflare environment variables.
+    const TMDB_ACCESS_TOKEN = context.env.VITE_TMDB_READ_ACCESS_TOKEN;
 
-    if (!TMDB_API_KEY) {
+    if (!TMDB_ACCESS_TOKEN) {
       return new Response(
         JSON.stringify({
           success: false,
           status_code: 401,
-          status_message: "TMDB API key not configured in environment variables"
+          status_message: "TMDB Access Token not configured in environment variables"
         }),
         {
           status: 401,
@@ -34,18 +33,18 @@ export async function onRequest(context) {
     }
 
     // Construct the final URL to fetch from TMDB.
-    // Remove any existing API key from search params to avoid duplicates
-    const cleanSearchParams = new URLSearchParams(searchParams);
-    cleanSearchParams.delete('api_key');
-    
-    const queryString = cleanSearchParams.toString();
-    const separator = queryString ? '&' : '?';
-    const fullURL = `${TMDB_BASE_URL}/${path}${queryString ? '?' + queryString : ''}${separator}api_key=${TMDB_API_KEY}`;
+    const queryString = searchParams.toString();
+    const fullURL = `${TMDB_BASE_URL}/${path}${queryString ? '?' + queryString : ''}`;
 
     console.log('Proxying request to TMDB:', fullURL);
 
-    // Make the actual request to the TMDB API.
-    const response = await fetch(fullURL);
+    // Make the actual request to the TMDB API with Bearer Token.
+    const response = await fetch(fullURL, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${TMDB_ACCESS_TOKEN}`
+      }
+    });
     
     if (!response.ok) {
       const errorData = await response.json();

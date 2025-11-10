@@ -52,11 +52,10 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ''),
           configure: (proxy, options) => {
             proxy.on('proxyReq', (proxyReq, req, res) => {
-              // Add API key to all proxied requests
-              if (env.VITE_TMDB_API_KEY) {
-                const url = new URL(proxyReq.path, 'https://api.themoviedb.org');
-                url.searchParams.append('api_key', env.VITE_TMDB_API_KEY);
-                proxyReq.path = url.pathname + url.search;
+              // Add Authorization header to all proxied requests
+              if (env.VITE_TMDB_READ_ACCESS_TOKEN) {
+                proxyReq.setHeader('Accept', 'application/json');
+                proxyReq.setHeader('Authorization', `Bearer ${env.VITE_TMDB_READ_ACCESS_TOKEN}`);
               }
             });
           }
