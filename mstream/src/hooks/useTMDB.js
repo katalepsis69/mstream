@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
-)
 const getApiBaseUrl = () => {
   return '/api';
 };
