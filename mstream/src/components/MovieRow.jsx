@@ -2,11 +2,8 @@ import React from 'react';
 import MovieCard from './MovieCard';
 
 const MovieRow = ({ title, items, onItemClick }) => {
-  // Show up to 24 items, but don't filter out items without posters
-  // Let MovieCard handle missing posters gracefully
   const displayItems = items.slice(0, 24);
 
-  // If no items to display, don't render the row
   if (displayItems.length === 0) {
     return null;
   }

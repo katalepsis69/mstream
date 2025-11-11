@@ -3,7 +3,6 @@ import path from "path"
 import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ mode }) => {
-  // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, process.cwd(), '')
   
   return {
@@ -26,7 +25,6 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ''),
           configure: (proxy, options) => {
             proxy.on('proxyReq', (proxyReq, req, res) => {
-              // Add Authorization header to all proxied requests
               if (env.VITE_TMDB_READ_ACCESS_TOKEN) {
                 proxyReq.setHeader('Accept', 'application/json');
                 proxyReq.setHeader('Authorization', `Bearer ${env.VITE_TMDB_READ_ACCESS_TOKEN}`);

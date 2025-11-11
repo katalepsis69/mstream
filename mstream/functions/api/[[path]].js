@@ -1,16 +1,9 @@
 export async function onRequest(context) {
   try {
-    // Get the path and search parameters from the incoming request.
     const url = new URL(context.request.url);
-    const path = url.pathname.replace('/api/', ''); // e.g., "trending/movie/week"
-    
-    // Get search parameters - use url.search directly to avoid double ??
+    const path = url.pathname.replace('/api/', '');
     const queryString = url.search;
-    
-    // The base URL for the real TMDB API.
     const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-
-    // Get your secret Bearer Token from the Cloudflare environment variables.
     const TMDB_ACCESS_TOKEN = context.env.VITE_TMDB_READ_ACCESS_TOKEN;
 
     if (!TMDB_ACCESS_TOKEN) {
@@ -32,12 +25,10 @@ export async function onRequest(context) {
       );
     }
 
-    // Construct the final URL to fetch from TMDB.
     const fullURL = `${TMDB_BASE_URL}/${path}${queryString}`;
 
     console.log('Proxying request to TMDB:', fullURL);
 
-    // Make the actual request to the TMDB API with Bearer Token.
     const response = await fetch(fullURL, {
       headers: {
         'Accept': 'application/json',
@@ -63,7 +54,6 @@ export async function onRequest(context) {
 
     const data = await response.json();
 
-    // Return the response from TMDB directly to your frontend.
     return new Response(JSON.stringify(data), {
       headers: {
         'Content-Type': 'application/json',

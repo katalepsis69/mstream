@@ -144,12 +144,10 @@ const Watch = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="breadcrumb">
         Home &gt;&gt; {type === 'movie' ? 'Movies' : 'TV Shows'} &gt;&gt; {contentInfo?.title || contentInfo?.name}
       </div>
       <div className="watch-container">
-        {/* Video Player */}
         <div className="player-section">
           <div className="video-container">
             <iframe
@@ -161,7 +159,6 @@ const Watch = () => {
             />
           </div>
 
-          {/* Server Selection */}
           <div className="server-section">
             <h3 className="section-title">Select Server</h3>
             <div className="server-grid">
@@ -181,9 +178,7 @@ const Watch = () => {
           </div>
         </div>
 
-        {/* Sidebar */}
         <div className="sidebar">
-          {/* Episode Selection for TV Shows */}
           {type === 'tv' && (
             <div className="episode-section">
               <div className="season-selector">
@@ -233,7 +228,6 @@ const Watch = () => {
             </div>
           )}
 
-          {/* Content Information */}
           {contentInfo && (
             <div className="info-section">
               <h3 className="section-title">About this {type === 'movie' ? 'Movie' : 'Show'}</h3>

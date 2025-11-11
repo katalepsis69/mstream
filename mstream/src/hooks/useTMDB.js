@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
-
-// Always use the proxy/Cloudflare Function (no direct API calls)
+)
 const getApiBaseUrl = () => {
   return '/api';
 };
@@ -19,9 +18,8 @@ export const useTMDB = () => {
   }, []);
 
   const buildUrl = (endpoint, params = {}) => {
-    const baseUrl = getApiBaseUrl(); // returns '/api'
+    const baseUrl = getApiBaseUrl();
     
-    // Always use simple relative URL construction
     const url = new URL(`${baseUrl}${endpoint}`, window.location.origin);
     
     Object.keys(params).forEach(key => {
@@ -35,7 +33,6 @@ export const useTMDB = () => {
 
   const checkApiStatus = async () => {
     try {
-      // Test a simple endpoint
       const testUrl = buildUrl('/configuration');
       const testResponse = await fetch(testUrl);
       
@@ -140,14 +137,11 @@ export const useTMDB = () => {
       }
 
       const data = await res.json();
-      console.log('Search results:', data); // Debug log
+      console.log('Search results:', data);
       
-      // More lenient filtering - allow items without posters
       return data.results?.filter(item => {
-        // Exclude people
         if (item.media_type === 'person') return false;
         
-        // Include movies and TV shows even without posters
         return (item.media_type === 'movie' || item.media_type === 'tv');
       }) || [];
     } catch (error) {

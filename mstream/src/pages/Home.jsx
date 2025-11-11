@@ -26,17 +26,15 @@ const Home = () => {
     fetchCredits 
   } = useTMDB();
 
-  // Initial data load
   useEffect(() => {
     initializeData();
-  }, []); // Only run once on mount
+  }, []);
 
-  // Update only trending data when timeWindow changes (without full reload)
   useEffect(() => {
     if (!loading) {
       updateTrendingData();
     }
-  }, [timeWindow]); // Only update trending data when timeWindow changes
+  }, [timeWindow]);
 
   const initializeData = async () => {
     try {
@@ -59,7 +57,6 @@ const Home = () => {
 
   const updateTrendingData = async () => {
     try {
-      // Only update movies and TV shows, keep anime the same
       const [movies, tvShows] = await Promise.all([
         fetchTrending('movie', timeWindow),
         fetchTrending('tv', timeWindow)
@@ -67,7 +64,6 @@ const Home = () => {
 
       setTrendingMovies(movies);
       setTrendingTV(tvShows);
-      // Note: We don't update trendingAnime here to avoid unnecessary re-fetch
     } catch (error) {
       console.error("Failed to update trending data:", error);
     }
@@ -75,7 +71,6 @@ const Home = () => {
 
   const handleTimeWindowToggle = () => {
     setTimeWindow(prev => prev === 'week' ? 'day' : 'week');
-    // No need to call initializeData here - the useEffect will handle it
   };
 
   const handleSearch = async (query) => {
@@ -131,7 +126,6 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Banner Slider - Only show if we have movies */}
       {trendingMovies.length > 0 && (
         <BannerSlider 
           movies={trendingMovies.slice(0, 5)} 
@@ -139,7 +133,6 @@ const Home = () => {
         />
       )}
       
-      {/* Time Window Toggle - Fixed version */}
       <div className="time-window-toggle-container">
         <div className="time-window-toggle">
           <span className={`toggle-label ${timeWindow === 'week' ? 'active' : ''}`}>
@@ -158,7 +151,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Content Rows - Only show if we have content */}
       <div className="content-rows">
         {trendingMovies.length > 0 && (
           <MovieRow 
@@ -185,7 +177,6 @@ const Home = () => {
         )}
       </div>
 
-      {/* Modals */}
       {isModalOpen && selectedItem && (
         <Modal item={selectedItem} onClose={closeModal} />
       )}

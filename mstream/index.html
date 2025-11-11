@@ -2,16 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>MStream - Watch Movies & TV Shows Online | Free Streaming</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="MStream - Your favorite destination for movies and TV shows. Stream the latest blockbusters, popular TV series, and anime all in one place." />
     
-    <!-- SEO Meta Tags -->
     <meta name="keywords" content="movies, TV shows, streaming, anime, entertainment, watch online, MStream">
     <meta name="author" content="MStream">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mstream.pages.dev/">
     <meta property="og:title" content="MStream - Watch Movies & TV Shows Online">
@@ -22,23 +21,19 @@
     <meta property="og:image:alt" content="MStream - Stream Movies & TV Shows">
     <meta property="og:site_name" content="MStream">
     
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://mstream.pages.dev/">
     <meta property="twitter:title" content="MStream - Watch Movies & TV Shows Online">
     <meta property="twitter:description" content="Your favorite destination for movies and TV shows. Stream the latest blockbusters, popular TV series, and anime all in one place.">
     <meta property="twitter:image" content="https://mstream.pages.dev/landingpage.webp">
     <meta property="twitter:image:alt" content="MStream - Stream Movies & TV Shows">
-    <meta name="twitter:creator" content="@mstream">
     
-    <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#e50914">
     <meta name="msapplication-TileColor" content="#e50914">
     <meta http-equiv="Cache-Control" content="public, max-age=3600">
     <meta http-equiv="Expires" content="1">
     <link rel="canonical" href="https://mstream.pages.dev/">
     
-    <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,14 +57,10 @@
     }
     </script>
 
-    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <title>MStream - Watch Movies & TV Shows Online | Free Streaming</title>
-    
-    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
@@ -106,7 +97,6 @@
         min-height: 100vh;
       }
       
-      /* Loading screen */
       .loading-screen {
         position: fixed;
         top: 0;
@@ -139,14 +129,12 @@
       <div class="netflix-logo">MSTREAM</div>
     </div>
     <script>
-      // Wait for 3 seconds, then hide the loading screen
       setTimeout(() => {
         const loadingScreen = document.querySelector('.loading-screen');
         if (loadingScreen) {
-          loadingScreen.style.opacity = '0'; // fade out smoothly
+          loadingScreen.style.opacity = '0';
           loadingScreen.style.transition = 'opacity 0.5s ease';
 
-          // remove it from the DOM after fade-out
           setTimeout(() => loadingScreen.remove(), 500);
         }
       }, 3000);

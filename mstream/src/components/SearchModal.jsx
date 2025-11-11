@@ -1,4 +1,3 @@
-// SearchModal.jsx
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import MovieCard from './MovieCard';
 
@@ -17,7 +16,7 @@ const SearchModal = ({ searchResults, onSearch, onClose, onItemClick, isSearchin
     }
     debounceTimer.current = setTimeout(() => {
       onSearch(value);
-    }, 300); // 300ms debounce
+    }, 300);
   }, [onSearch]);
 
   const handleInputChange = (e) => {
@@ -52,7 +51,7 @@ const SearchModal = ({ searchResults, onSearch, onClose, onItemClick, isSearchin
   };
 
   const handleClose = () => {
-    setQuery(''); // Clear search query when closing
+    setQuery('');
     onClose();
   };
 

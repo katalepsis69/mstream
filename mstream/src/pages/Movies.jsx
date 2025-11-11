@@ -79,7 +79,6 @@ const Movies = () => {
         <p>Discover the latest and greatest movies</p>
       </div>
 
-      {/* Advanced Filters Section */}
       <div className="filters-section">
         <div className="filter-row">
           <div className="filter-group">

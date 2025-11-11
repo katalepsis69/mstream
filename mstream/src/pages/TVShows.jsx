@@ -79,7 +79,6 @@ const TVShows = () => {
         <p>Discover the latest and greatest TV series</p>
       </div>
 
-      {/* Advanced Filters Section */}
       <div className="filters-section">
         <div className="filter-row">
           <div className="filter-group">

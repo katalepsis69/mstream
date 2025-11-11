@@ -25,7 +25,6 @@ const Popular = () => {
   }, [filters]);
 
   const buildUrl = (endpoint, params = {}) => {
-    // Always use the proxy/Cloudflare Function approach
     const url = new URL(`/api${endpoint}`, window.location.origin);
     Object.keys(params).forEach(key => {
       if (params[key] !== undefined && params[key] !== null) {
@@ -98,7 +97,6 @@ const Popular = () => {
         <p>Discover the most popular movies right now</p>
       </div>
 
-      {/* Advanced Filters Section */}
       <div className="filters-section">
         <div className="filter-row">
           <div className="filter-group">

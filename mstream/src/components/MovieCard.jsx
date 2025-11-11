@@ -9,10 +9,9 @@ const MovieCard = ({ item, onClick }) => {
   const year = item.release_date ? item.release_date.substring(0, 4) : 
                 (item.first_air_date ? item.first_air_date.substring(0, 4) : '');
 
-  // Handle missing poster
   const posterSrc = item.poster_path 
     ? `${POSTER_URL}${item.poster_path}`
-    : '/placeholder-poster.jpg'; // You can create a placeholder image
+    : '/placeholder-poster.jpg';
 
   return (
     <div className="movie-card" onClick={onClick}>

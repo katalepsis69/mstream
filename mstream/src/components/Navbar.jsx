@@ -1,4 +1,3 @@
-// Navbar.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +23,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
 
   const handleInputFocus = () => {
     setIsSearchFocused(true);
-    // Open search modal when input is focused
     onSearchClick();
   };
 
@@ -53,7 +51,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
           />
         </Link>
 
-        {/* Desktop Navigation Links */}
         <div className="navbar-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/tv-shows" className="nav-link">TV Shows</Link>
@@ -76,7 +73,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
         <button 
           className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
           onClick={toggleMenu}
@@ -87,7 +83,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
           <span></span>
         </button>
 
-        {/* Mobile Side Menu */}
         <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
           <div className="side-menu-header">
             <h3>Menu</h3>
@@ -100,7 +95,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
           </div>
         </div>
 
-        {/* Overlay when menu is open */}
         {isMenuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
       </div>
     </nav>
