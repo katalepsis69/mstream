@@ -10,6 +10,7 @@ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTV, setTrendingTV] = useState([]);
   const [trendingAnime, setTrendingAnime] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]); // New state for now playing movies
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -22,8 +23,9 @@ const Home = () => {
     tvGenres, 
     fetchTrending, 
     fetchTrendingAnime, 
+    fetchNowPlaying, // Import the new function
     searchTMDB, 
-    fetchCredits 
+    fetchCredits
   } = useTMDB();
 
   useEffect(() => {
@@ -39,15 +41,17 @@ const Home = () => {
   const initializeData = async () => {
     try {
       setLoading(true);
-      const [movies, tvShows, anime] = await Promise.all([
+      const [movies, tvShows, anime, nowPlaying] = await Promise.all([
         fetchTrending('movie', timeWindow),
         fetchTrending('tv', timeWindow),
-        fetchTrendingAnime()
+        fetchTrendingAnime(),
+        fetchNowPlaying() // Fetch now playing movies
       ]);
 
       setTrendingMovies(movies);
       setTrendingTV(tvShows);
       setTrendingAnime(anime);
+      setNowPlayingMovies(nowPlaying);
     } catch (error) {
       console.error("Failed to initialize data:", error);
     } finally {
@@ -126,9 +130,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {trendingMovies.length > 0 && (
+      {/* Use nowPlayingMovies for BannerSlider */}
+      {nowPlayingMovies.length > 0 && (
         <BannerSlider 
-          movies={trendingMovies.slice(0, 5)} 
+          movies={nowPlayingMovies.slice(0, 10)} 
           onItemClick={handleItemClick}
         />
       )}

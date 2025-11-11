@@ -120,3 +120,34 @@
   position: relative !important;
   z-index: 1001 !important;
 }
+
+/* Now Playing Overlay Styles */
+.now-playing-overlay {
+  margin-bottom: 15px;
+}
+
+.now-playing-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e50914, #ff6b6b);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(229, 9, 20, 0.6);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
+  }
+}

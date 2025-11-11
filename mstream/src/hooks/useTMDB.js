@@ -47,6 +47,28 @@ export const useTMDB = () => {
     }
   };
 
+  const fetchNowPlaying = async () => {
+    try {
+      const url = buildUrl('/movie/now_playing', {
+        language: 'en-US',
+        page: 1
+      });
+      
+      const res = await fetch(url);
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`HTTP error! status: ${res.status}, response: ${errorText}`);
+      }
+      
+      const data = await res.json();
+      return data.results || [];
+    } catch (error) {
+      console.error("Failed to fetch now playing movies:", error);
+      throw error;
+    }
+  };
+
   const fetchGenres = async () => {
     try {
       const [movieRes, tvRes] = await Promise.all([
@@ -257,6 +279,7 @@ export const useTMDB = () => {
     movieGenres,
     tvGenres,
     apiStatus,
+    fetchNowPlaying,
     fetchTrending,
     fetchTrendingAnime,
     searchTMDB,

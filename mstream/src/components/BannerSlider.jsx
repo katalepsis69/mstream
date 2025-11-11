@@ -32,6 +32,11 @@ const BannerSlider = ({ movies, onItemClick }) => {
         }}
       >
         <div className="banner-content">
+          {/* Add Now Playing overlay */}
+          <div className="now-playing-overlay">
+            <span className="now-playing-badge">Now Playing in Theater</span>
+          </div>
+          
           <h1 className="banner-title">{currentMovie.title || currentMovie.name}</h1>
           
           <div className="banner-meta">
