@@ -69,7 +69,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
               onBlur={handleSearchBlur}
               className="navbar-search-input"
             />
-            <span className="search-icon">🔍</span>
           </div>
         </div>
 
