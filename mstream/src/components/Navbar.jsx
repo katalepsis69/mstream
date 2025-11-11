@@ -91,9 +91,6 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
         <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
           <div className="side-menu-header">
             <h3>Menu</h3>
-            <button className="close-menu" onClick={closeMenu} aria-label="Close menu">
-              &times;
-            </button>
           </div>
           <div className="side-menu-links">
             <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>

@@ -126,13 +126,3 @@
   position: relative !important;
   z-index: 1001 !important;
 }
-
-/* Ensure the toggle appears above other content */
-.home-page {
-  position: relative;
-}
-
-/* Add some margin to push content down if needed */
-.home-page > .time-window-toggle-container {
-  margin-top: 80px !important; /* Adjust based on your navbar height */
-}

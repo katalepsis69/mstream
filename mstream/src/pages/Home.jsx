@@ -131,18 +131,6 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* DEBUG: Add this temporary element to check if component is rendering */}
-      <div style={{
-        background: 'red', 
-        color: 'white', 
-        padding: '10px', 
-        textAlign: 'center',
-        fontSize: '16px',
-        fontWeight: 'bold'
-      }}>
-        DEBUG: Home Component is Rendering
-      </div>
-
       {/* Banner Slider - Only show if we have movies */}
       {trendingMovies.length > 0 && (
         <BannerSlider 

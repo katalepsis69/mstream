@@ -9,9 +9,14 @@
 .banner-slider {
   position: relative;
   height: 80vh;
-  margin-top: 68px;
   overflow: hidden;
   background: var(--netflix-gradient);
+}
+
+@media (max-width: 768px) {
+    .banner-slider {
+        height: 60vh;
+    }
 }
 
 .banner-slide {
