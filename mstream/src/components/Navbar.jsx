@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
+const Navbar = ({ onSearch, searchResults, onItemClick, isSearching }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -16,14 +16,22 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Function to get poster image URL
+  const getPosterUrl = (posterPath) => {
+    if (!posterPath) return null;
+    return `https://image.tmdb.org/t/p/w92${posterPath}`; // w92 is small poster size
+  };
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchQuery(value);
+    if (onSearch) {
+      onSearch(value);
+    }
   };
 
   const handleInputFocus = () => {
     setIsSearchFocused(true);
-    onSearchClick();
   };
 
   const handleSearchBlur = (e) => {
@@ -38,6 +46,14 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleItemSelect = (item) => {
+    if (onItemClick) {
+      onItemClick(item);
+    }
+    setSearchQuery('');
+    setIsSearchFocused(false);
   };
 
   return (
@@ -69,6 +85,62 @@ const Navbar = ({ onSearchClick, searchResults, onItemClick }) => {
               onBlur={handleSearchBlur}
               className="navbar-search-input"
             />
+            
+            {/* Inline Search Results Dropdown */}
+            {isSearchFocused && searchQuery && (
+              <div className="search-results-dropdown">
+                <div className="search-results-list">
+                  {searchResults && searchResults.length > 0 ? (
+                    searchResults.map(item => (
+                      <div 
+                        key={`${item.id}-${item.media_type}`}
+                        className="search-result-item"
+                        onClick={() => handleItemSelect(item)}
+                      >
+                        {/* Poster Image */}
+                        <div className="search-result-poster">
+                          {getPosterUrl(item.poster_path) ? (
+                            <img 
+                              src={getPosterUrl(item.poster_path)} 
+                              alt={item.title || item.name}
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="poster-placeholder">
+                              <span>No Image</span>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <div className="search-result-info">
+                          <div className="search-result-title">
+                            {item.title || item.name}
+                          </div>
+                          <div className="search-result-meta">
+                            <span className="search-result-type">
+                              {item.media_type}
+                            </span>
+                            {item.release_date && (
+                              <span className="search-result-year">
+                                ({new Date(item.release_date).getFullYear()})
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : isSearching ? (
+                    <div className="search-loading">
+                      <p>Searching...</p>
+                    </div>
+                  ) : (
+                    <div className="search-no-results">
+                      <p>No results found for "{searchQuery}"</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

@@ -214,7 +214,14 @@ body {
 
 @media (max-width: 768px) {
   .banner-title {
-    font-size: 2rem;
+    font-size: 0.8rem;
+  }
+
+  .banner-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .grid-container {
@@ -233,7 +240,7 @@ body {
   }
 
   .banner-title {
-    font-size: 1.5rem;
+    font-size: 0.6rem;
   }
 
   .banner-buttons {

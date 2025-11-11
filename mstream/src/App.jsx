@@ -8,12 +8,10 @@ import Popular from './pages/Popular';
 import Watch from './pages/Watch';
 import About from './pages/About';
 import Disclaimer from './pages/Disclaimer';
-import SearchModal from './components/SearchModal';
 import { useTMDB } from './hooks/useTMDB';
 import Footer from './components/Footer';
 
 function App() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const { searchTMDB } = useTMDB();
@@ -37,38 +35,20 @@ function App() {
     }
   };
 
-  const handleSearchClick = () => {
-    setIsSearchOpen(true);
-  };
-
-  const handleSearchClose = () => {
-    setIsSearchOpen(false);
-    setSearchResults([]);
-  };
-
   const handleItemClick = (item) => {
     // Handle item click - you might want to navigate to detail page or show modal
     console.log('Item clicked:', item);
-    handleSearchClose();
+    setSearchResults([]); // Clear search results when item is clicked
   };
 
   return (
       <div className="App">
         <Navbar
-          onSearchClick={handleSearchClick}
+          onSearch={handleSearch} // Changed from onSearchClick to onSearch
           searchResults={searchResults}
           onItemClick={handleItemClick}
+          isSearching={isSearching} // Added this prop
         />
-        
-        {isSearchOpen && (
-          <SearchModal
-            searchResults={searchResults}
-            onSearch={handleSearch}
-            onClose={handleSearchClose}
-            onItemClick={handleItemClick}
-            isSearching={isSearching}
-          />
-        )}
         
         <main>
           <Routes>
