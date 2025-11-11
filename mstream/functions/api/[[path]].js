@@ -4,8 +4,8 @@ export async function onRequest(context) {
     const url = new URL(context.request.url);
     const path = url.pathname.replace('/api/', ''); // e.g., "trending/movie/week"
     
-    // Get search parameters
-    const searchParams = url.search;
+    // Get search parameters - use url.search directly to avoid double ??
+    const queryString = url.search;
     
     // The base URL for the real TMDB API.
     const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
@@ -33,8 +33,7 @@ export async function onRequest(context) {
     }
 
     // Construct the final URL to fetch from TMDB.
-    const queryString = searchParams.toString();
-    const fullURL = `${TMDB_BASE_URL}/${path}${queryString ? '?' + queryString : ''}`;
+    const fullURL = `${TMDB_BASE_URL}/${path}${queryString}`;
 
     console.log('Proxying request to TMDB:', fullURL);
 
