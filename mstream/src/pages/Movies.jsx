@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MovieRow from '../components/MovieRow';
 import Modal from '../components/Modal';
 import { useTMDB } from '../hooks/useTMDB';
@@ -8,12 +9,18 @@ const Movies = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Initialize filters from URL or defaults
   const [filters, setFilters] = useState({
-    sort_by: 'popularity.desc',
-    include_adult: false,
-    include_video: false,
-    language: 'en-US',
-    page: 1
+    sort_by: searchParams.get('sort_by') || 'popularity.desc',
+    include_adult: searchParams.get('include_adult') === 'true' || false,
+    include_video: searchParams.get('include_video') === 'true' || false,
+    language: searchParams.get('language') || 'en-US',
+    page: parseInt(searchParams.get('page')) || 1,
+    year: searchParams.get('year') ? parseInt(searchParams.get('year')) : undefined,
+    with_genres: searchParams.get('with_genres') || undefined,
+    'vote_average.gte': searchParams.get('vote_average.gte') ? parseFloat(searchParams.get('vote_average.gte')) : undefined
   });
 
   const {
@@ -25,6 +32,19 @@ const Movies = () => {
   useEffect(() => {
     fetchMovies();
   }, [filters]);
+
+  // Update URL when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        params.set(key, value.toString());
+      }
+    });
+
+    setSearchParams(params);
+  }, [filters, setSearchParams]);
 
   const fetchMovies = async () => {
     try {
@@ -63,6 +83,16 @@ const Movies = () => {
     setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
   };
 
+  const clearFilters = () => {
+    setFilters({
+      sort_by: 'popularity.desc',
+      include_adult: false,
+      include_video: false,
+      language: 'en-US',
+      page: 1
+    });
+  };
+
   if (loading) {
     return (
       <div className="loading-screen">
@@ -77,6 +107,21 @@ const Movies = () => {
       <div className="page-header">
         <h1>Movies</h1>
         <p>Discover the latest and greatest movies</p>
+        <button 
+          className="clear-filters-btn"
+          onClick={clearFilters}
+          style={{
+            background: 'var(--netflix-red)',
+            color: 'white',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginTop: '10px'
+          }}
+        >
+          Clear Filters
+        </button>
       </div>
 
       <div className="filters-section">

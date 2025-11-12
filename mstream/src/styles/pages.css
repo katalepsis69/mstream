@@ -1376,3 +1376,52 @@ media (max-width: 768px) {
     padding: 1.5rem;
   }
 }
+
+/* Add to your CSS file (components.css or pages.css) */
+
+.page-header {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--netflix-light-gray);
+  margin-bottom: 1rem;
+}
+
+.clear-filters-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.clear-filters-btn {
+  background: var(--netflix-red) !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3) !important;
+}
+
+.clear-filters-btn:hover {
+  background: var(--netflix-dark-red) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4) !important;
+}
+
+.clear-filters-btn:active {
+  transform: translateY(0) !important;
+}

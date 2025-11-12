@@ -1,4 +1,6 @@
+// TVShows.jsx
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MovieRow from '../components/MovieRow';
 import Modal from '../components/Modal';
 import { useTMDB } from '../hooks/useTMDB';
@@ -8,12 +10,18 @@ const TVShows = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Initialize filters from URL or defaults
   const [filters, setFilters] = useState({
-    sort_by: 'popularity.desc',
-    include_adult: false,
-    include_null_first_air_dates: false,
-    language: 'en-US',
-    page: 1
+    sort_by: searchParams.get('sort_by') || 'popularity.desc',
+    include_adult: searchParams.get('include_adult') === 'true' || false,
+    include_null_first_air_dates: searchParams.get('include_null_first_air_dates') === 'true' || false,
+    language: searchParams.get('language') || 'en-US',
+    page: parseInt(searchParams.get('page')) || 1,
+    first_air_date_year: searchParams.get('first_air_date_year') ? parseInt(searchParams.get('first_air_date_year')) : undefined,
+    with_genres: searchParams.get('with_genres') || undefined,
+    with_status: searchParams.get('with_status') || undefined
   });
 
   const {
@@ -25,6 +33,19 @@ const TVShows = () => {
   useEffect(() => {
     fetchTVShows();
   }, [filters]);
+
+  // Update URL when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        params.set(key, value.toString());
+      }
+    });
+
+    setSearchParams(params);
+  }, [filters, setSearchParams]);
 
   const fetchTVShows = async () => {
     try {
@@ -63,6 +84,16 @@ const TVShows = () => {
     setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
   };
 
+  const clearFilters = () => {
+    setFilters({
+      sort_by: 'popularity.desc',
+      include_adult: false,
+      include_null_first_air_dates: false,
+      language: 'en-US',
+      page: 1
+    });
+  };
+
   if (loading) {
     return (
       <div className="loading-screen">
@@ -77,6 +108,21 @@ const TVShows = () => {
       <div className="page-header">
         <h1>TV Shows</h1>
         <p>Discover the latest and greatest TV series</p>
+        <button 
+          className="clear-filters-btn"
+          onClick={clearFilters}
+          style={{
+            background: 'var(--netflix-red)',
+            color: 'white',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginTop: '10px'
+          }}
+        >
+          Clear Filters
+        </button>
       </div>
 
       <div className="filters-section">
