@@ -38,7 +38,7 @@
 <img alt="Popular" src="https://raw.githubusercontent.com/cd-Crypton/mstream/refs/heads/main/mstream/public/img/popularwithFilter.webp"/>
 
 ### Scripts
-If you want to convert your images into WebP format, read ![scripts/README.md](https://raw.githubusercontent.com/cd-Crypton/mstream/refs/heads/main/mstream/scripts/README.md) and use ![webp_converter.py](https://raw.githubusercontent.com/cd-Crypton/mstream/refs/heads/main/mstream/scripts/webp_converter.py). Only if you don't want to open new tab in a browser, convert online.
+If you want to convert your images into WebP format, read ![scripts/README.md](https://github.com/cd-Crypton/mstream/tree/main/scripts/README.md) and use ![webp_converter.py](https://github.com/cd-Crypton/mstream/tree/main/scripts/webp_converter.py). Only if you don't want to open new tab in a browser, convert online.
 </details>
 
 ## Local Development
