@@ -151,3 +151,42 @@
     box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
   }
 }
+
+/* Home.css - Add these styles */
+
+.trending-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 40px;
+}
+
+.trending-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure MovieRow components in side-by-side layout show 3 columns */
+.trending-column .movie-row .grid-container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .trending-side-by-side {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .trending-column .movie-row .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .trending-column .movie-row .grid-container {
+    grid-template-columns: 1fr;
+  }
+}

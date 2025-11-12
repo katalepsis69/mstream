@@ -328,23 +328,6 @@
   border-bottom: none;
 }
 
-.tech-stack {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-}
-
-.tech-stack ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.tech-stack li {
-  padding: 0.5rem 0;
-  font-size: 1rem;
-}
-
 .features-grid {
   display: -ms-grid;
   display: grid;

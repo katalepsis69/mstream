@@ -24,17 +24,6 @@ const About = () => {
               to demonstrate a responsive and dynamic front-end application. We source our data from The Movie Database (TMDB) 
               API to ensure up-to-date and accurate information about movies and TV shows.
             </p>
-            
-            <div className="tech-stack">
-              <h3>Tech Stack:</h3>
-              <ul>
-                <li>⚛️ React.js 18 - Modern frontend framework</li>
-                <li>⚡ Vite - Fast build tool and development server</li>
-                <li>🎨 CSS3 - Netflix-inspired responsive design</li>
-                <li>☁️ Cloudflare Pages - Edge deployment platform</li>
-                <li>🎬 TMDB API - Comprehensive movie and TV data</li>
-              </ul>
-            </div>
           </section>
 
           <section className="about-section">
@@ -85,8 +74,7 @@ const About = () => {
               Have questions, suggestions, or feedback? We'd love to hear from you!
             </p>
             <div className="contact-info">
-              <p>📧 Email: <a href="mailto:support@mstream.com">support@mstream.com</a></p>
-              <p>🐙 GitHub: <a href="https://github.com/mstream" target="_blank" rel="noopener noreferrer">github.com/mstream</a></p>
+              <p>🐙 GitHub: <a href="https://github.com/cd-Crypton/mstream" target="_blank" rel="noopener noreferrer">github.com/mstream</a></p>
             </div>
           </section>
         </div>

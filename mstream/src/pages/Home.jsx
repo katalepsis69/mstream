@@ -10,7 +10,7 @@ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTV, setTrendingTV] = useState([]);
   const [trendingAnime, setTrendingAnime] = useState([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState([]); // New state for now playing movies
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -157,22 +157,32 @@ const Home = () => {
       </div>
 
       <div className="content-rows">
-        {trendingMovies.length > 0 && (
-          <MovieRow 
-            title={`Trending Movies ${timeWindow === 'day' ? 'Today' : 'This Week'}`} 
-            items={trendingMovies} 
-            onItemClick={handleItemClick}
-          />
-        )}
+        {/* Side by side trending movies and TV shows */}
+        <div className="trending-side-by-side">
+          {trendingMovies.length > 0 && (
+            <div className="trending-column">
+              <MovieRow 
+                title={`Trending Movies ${timeWindow === 'day' ? 'Today' : 'This Week'}`} 
+                items={trendingMovies.slice(0, 15)}
+                onItemClick={handleItemClick}
+                columns={3}
+              />
+            </div>
+          )}
+          
+          {trendingTV.length > 0 && (
+            <div className="trending-column">
+              <MovieRow 
+                title={`Trending TV Shows ${timeWindow === 'day' ? 'Today' : 'This Week'}`} 
+                items={trendingTV.slice(0, 15)}
+                onItemClick={handleItemClick}
+                columns={3}
+              />
+            </div>
+          )}
+        </div>
         
-        {trendingTV.length > 0 && (
-          <MovieRow 
-            title={`Trending TV Shows ${timeWindow === 'day' ? 'Today' : 'This Week'}`} 
-            items={trendingTV} 
-            onItemClick={handleItemClick}
-          />
-        )}
-        
+        {/* Trending Anime below */}
         {trendingAnime.length > 0 && (
           <MovieRow 
             title="Trending Anime" 

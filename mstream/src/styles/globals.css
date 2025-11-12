@@ -214,7 +214,7 @@ body {
 
 @media (max-width: 768px) {
   .banner-title {
-    font-size: 0.5rem;
+    font-size: 2rem !important;
   }
 
   .banner-buttons {
@@ -240,7 +240,7 @@ body {
   }
 
   .banner-title {
-    font-size: 0.4rem;
+    font-size: 2rem !important;
   }
 
   .banner-buttons {
