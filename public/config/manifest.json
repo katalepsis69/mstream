@@ -57,7 +57,7 @@
     },
     {
         "src": "/img/landingpage-mobile.png",
-        "sizes": "36x755",
+        "sizes": "362x760",
         "type": "image/png",
         "form_factor": "narrow",
         "description": "A screenshot of the home page - mobile"
