@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useCallback, memo } from 'react';
 import { useTMDB } from '../hooks/useTMDB';
 
-const Modal = ({ item, onClose }) => {
+const Modal = memo(({ item, onClose }) => {
   const { POSTER_URL } = useTMDB();
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = useCallback((e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
+  }, [onClose]);
+
+  const playButtonClick = useCallback(() => {
+    // Handle navigation or play action
+    window.location.href = `/watch?type=${item.type}&id=${item.id}`;
+  }, [item.type, item.id]);
 
   return (
     <div className="modal-overlay" onClick={handleBackdropClick}>
@@ -20,6 +25,7 @@ const Modal = ({ item, onClose }) => {
             src={`${POSTER_URL}${item.poster_path}`} 
             alt={item.title || item.name}
             className="modal-poster"
+            loading="lazy"
           />
           
           <div className="modal-details">
@@ -46,19 +52,20 @@ const Modal = ({ item, onClose }) => {
             </div>
 
             <div className="modal-actions">
-              <a
-                href={`/watch?type=${item.type}&id=${item.id}`}
+              <button
+                onClick={playButtonClick}
                 className="watch-btn primary"
               >
                 <span className="play-icon">▶</span>
                 Play
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+});
 
+Modal.displayName = 'Modal';
 export default Modal;
